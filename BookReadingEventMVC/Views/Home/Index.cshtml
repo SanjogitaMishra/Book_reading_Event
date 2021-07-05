@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BookReadingEventMVC.Models.Event>
+@{   
+        ViewBag.Title = "Index";  
+
+}
+
+
+<h2>Upcoming Events</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInHours)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        if ( Convert.ToDateTime(item.Date) >= DateTime.Now && item.Type == "Public")
+        {
+
+            <tr>
+                <td>
+                   @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationInHours)
+                </td>
+
+            </tr>
+        }
+   
+    }
+</table>
+
+<h1>Past events</h1>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInHours)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        if ( Convert.ToDateTime(item.Date) < DateTime.Now && item.Type == "Public")
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationInHours)
+                </td>
+
+            </tr>
+        }
+       
+    }
+</table>

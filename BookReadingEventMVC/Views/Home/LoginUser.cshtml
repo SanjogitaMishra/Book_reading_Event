@@ -1,0 +1,115 @@
+﻿@model IEnumerable<BookReadingEventMVC.Models.Event>
+@{
+    ViewData["Title"] = "LoginUser";
+    Layout = "~/Views/Shared/_LoginUser.cshtml";
+
+}
+<h2 style="text-align:center;">Welcome </h2>
+<h3>Upcoming Events</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInHours)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (Convert.ToDateTime(item.Date) >= DateTime.Now && (item.Type == "Public" || item.UserId==ViewBag.Id))
+        {   
+<tr>
+    <td>
+        @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DurationInHours)
+    </td>
+   @if (item.UserId==ViewBag.Id){
+    <td>
+
+        @Html.ActionLink("Edit", "EditEvent", "Event", new { id = item.EventsId }, null) |
+        @Html.ActionLink("Delete", "DeleteEvent", "Event", new { id = item.EventsId }, null)
+        
+    </td>
+    }
+</tr>
+        }
+    }
+</table>
+
+<h3>Past Events</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInHours)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (Convert.ToDateTime(item.Date) < DateTime.Now && (item.Type == "Public" || item.UserId == ViewBag.Id))
+        {
+<tr>
+    <td>
+        @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DurationInHours)
+    </td>
+    @if (item.UserId == ViewBag.Id)
+    {
+<td>
+    @Html.ActionLink("Edit", "EditEvent", "Event", new { id = item.EventsId }, null) |
+    @Html.ActionLink("Delete", "DeleteEvent", "Event", new { id = item.EventsId }, null)
+
+</td>
+    }
+    </tr>
+        }
+    }
+</table>
+

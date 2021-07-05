@@ -1,0 +1,119 @@
+﻿@model IEnumerable<BookReadingEventMVC.Models.Event>
+@{
+    ViewBag.Title = "MyEvents";
+    if (ViewBag.Id == 1)
+    {
+        Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LoginUser.cshtml";
+    }
+}
+<h2>MyEvents</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DurationInHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvitByEmail)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (Convert.ToDateTime(item.Date) < DateTime.Now)
+        {
+            <tr>
+                /*
+                <td>
+                    @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationInHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvitByEmail)
+                </td>
+                <td>
+                        @Html.ActionLink("Edit", "EditEvent", new { id = item.EventsId }) |
+                        @Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventsId })
+                    </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.EventTitle, "GetDetails", "Event", new { id = item.EventsId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DurationInHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvitByEmail)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditEvent", new { id = item.EventsId }) |
+                    @Html.ActionLink("Delete", "DeleteEvent", new { id = item.EventsId })
+                </td>
+            </tr>
+
+
+        }
+
+    }
+
+</table>
+

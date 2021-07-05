@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BookReadingEventMVC.Models.Comment>
+@{
+    ViewBag.Title = "ShowComments";
+    if (ViewBag.Id == 1)
+    {
+        Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+
+    }
+    else if(ViewBag.Id == 0)
+    {
+        Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LoginUser.cshtml";
+    }
+
+}
+<h2>User Comments</h2>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserComments)
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,100 @@
+﻿@model BookReadingEventMVC.Models.Event
+
+@{
+    ViewBag.Title = "GetDetails";
+
+    if (ViewBag.Id == 1)
+    {
+        Layout = "~/Views/Shared/_LoginAdmin.cshtml";
+
+    }
+    else if(ViewBag.Id!=0)
+    {
+        Layout = "~/Views/Shared/_LoginUser.cshtml";
+    }
+}
+
+    <h2>Details Of Event</h2>
+
+    <div>
+
+        <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EventTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EventTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DurationInHours)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DurationInHours)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OtherDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OtherDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.InvitByEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InvitByEmail)
+            </dd>
+
+
+
+        </dl>
+    </div>
+    <p>
+
+        @if (ViewBag.Id != 0 ||ViewBag.Id==1)
+        {@Html.ActionLink("Add Comment |", "AddComment", new { id = Model.EventsId })
+
+        @Html.ActionLink(" Show Comment", "ShowComments", new { id = Model.EventsId })}
+    </p>
+
+
